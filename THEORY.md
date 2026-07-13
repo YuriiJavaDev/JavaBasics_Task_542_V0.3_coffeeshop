@@ -1,2 +1,2 @@
-# Validation and single error response.
+# CRUD and logging.
 

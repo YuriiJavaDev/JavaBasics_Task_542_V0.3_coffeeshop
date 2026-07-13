@@ -4,3 +4,8 @@ server:
 coffee:
   shop:
    city: Haifa
+
+spring:
+  output:
+    ansi:
+      enabled: always
