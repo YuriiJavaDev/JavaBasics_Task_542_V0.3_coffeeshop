@@ -19,9 +19,8 @@ public class OrderRepository {
         return idGenerator.getAndIncrement();
     }
 
-    public Order save(Order order) {
+    public void save(Order order) {
         orders.put(order.id(), order);
-        return order;
     }
 
     public List<Order> findAll() {
