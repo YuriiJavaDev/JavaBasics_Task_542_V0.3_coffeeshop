@@ -5,6 +5,8 @@ import com.yurii.pavlenko.coffeeshop.models.*;
 import com.yurii.pavlenko.coffeeshop.repository.OrderRepository;
 import com.yurii.pavlenko.coffeeshop.services.OrderService;
 import com.yurii.pavlenko.coffeeshop.validators.OrderValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @RestController
 public class OrderController {
+
+    private static final Logger log = LoggerFactory.getLogger(OrderController.class);
 
     private final CoffeeShopProperties coffeeShopProperties;
     private final OrderValidator orderValidator;
@@ -74,6 +78,7 @@ public class OrderController {
     @GetMapping("/order/{id}")
     public OrderResponseDTO getOrder(@PathVariable long id) {
         Order order = orderService.getOrderOrThrow(id);
+        log.debug("An order was found in the repository: id={}", order.id());
         return new OrderResponseDTO(order.id(), order.item(), order.quantity(), coffeeShopProperties.name());
     }
 
